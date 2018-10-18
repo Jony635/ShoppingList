@@ -6,6 +6,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -52,8 +53,11 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         adapter.setOnClickListener(new ShoppingListAdapter.OnClickListener() {
             @Override
-            public void onClick(int position) {
+            public void onClick(int position)
+            {
                 String msg = "Has clicat: " + items.get(position).getName();
+                items.get(position).selected = !items.get(position).selected;
+                adapter.notifyItemChanged(position);
                 Toast.makeText(ShoppingListActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });

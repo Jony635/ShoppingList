@@ -22,4 +22,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Potatoes" />
 
+    <CheckBox
+        android:clickable="false"
+        android:id="@+id/selected_checkbox"
+        android:layout_width="33dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="8dp"
+        android:checked="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/name_view"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
