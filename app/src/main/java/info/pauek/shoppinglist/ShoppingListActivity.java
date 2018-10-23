@@ -1,5 +1,7 @@
 package info.pauek.shoppinglist;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
@@ -57,17 +59,30 @@ public class ShoppingListActivity extends AppCompatActivity {
             @Override
             public void onClick(int position)
             {
-                String msg = "Has clicat: " + items.get(position).getName();
+                //String msg = "Has clicat: " + items.get(position).getName();
                 items.get(position).selected = !items.get(position).selected;
                 adapter.notifyItemChanged(position);
-                Toast.makeText(ShoppingListActivity.this, msg, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ShoppingListActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
 
-        //adapter.setOnLongClickListener(()
-       // {
-
-        //};
+        adapter.setOnLongClickListener(new ShoppingListAdapter.OnLongClickListener() {
+           @Override
+           public void OnLongClick(final int position) {
+               AlertDialog.Builder builder = new AlertDialog.Builder(ShoppingListActivity.this);
+               builder.setMessage(R.string.surequote);
+               builder.setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+                   @Override
+                   public void onClick(DialogInterface dialogInterface, int i) {
+                       items.remove(position);
+                       adapter.notifyItemRemoved(position);
+                   }
+               });
+               builder.setNegativeButton(R.string.cancel, null);
+               AlertDialog alertDialog = builder.create();
+               alertDialog.show();
+           }
+        });
     }
 
     public void OnClickButtonAdd(View view) {
