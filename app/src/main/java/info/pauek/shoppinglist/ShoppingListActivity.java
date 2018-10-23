@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -16,8 +17,8 @@ import java.util.List;
 
 public class ShoppingListActivity extends AppCompatActivity {
 
-    // TODO: 1. Afegir un CheckBox a cada ítem, per marcar o desmarcar els ítems (al model també!)
-    // TODO: 2. Que es puguin afegir elements (+ treure els inicials)
+    // TODO: 1. Afegir un CheckBox a cada ítem, per marcar o desmarcar els ítems (al model també!)  v
+    // TODO: 2. Que es puguin afegir elements (+ treure els inicials)                               v
     // TODO: 3. Afegir un menú amb una opció per esborrar de la llista tots els marcats.
     // TODO: 4. Que es pugui esborrar un element amb LongClick (cal fer OnLongClickListener)
 
@@ -36,8 +37,6 @@ public class ShoppingListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_list);
 
         items = new ArrayList<>();
-        items.add(new ShoppingItem("Potatoes"));
-        items.add(new ShoppingItem("Toilet Paper"));
 
         items_view = findViewById(R.id.items_view);
         btn_add = findViewById(R.id.btn_add);
@@ -61,5 +60,15 @@ public class ShoppingListActivity extends AppCompatActivity {
                 Toast.makeText(ShoppingListActivity.this, msg, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void OnClickButtonAdd(View view) {
+        String name = edit_box.getText().toString();
+        if(!name.isEmpty())
+        {
+            items.add(new ShoppingItem(name));
+            edit_box.setText("");
+            adapter.notifyItemInserted(items.size());
+        }
     }
 }
