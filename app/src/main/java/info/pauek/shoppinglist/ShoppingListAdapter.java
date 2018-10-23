@@ -13,6 +13,7 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ItemHolder> {
     Context context;
     List<ShoppingItem> items;
     private OnClickListener onClickListener;
+    private OnLongClickListener onLongClickListener;
 
     public ShoppingListAdapter(Context context, List<ShoppingItem> items) {
         this.context = context;
@@ -39,8 +40,13 @@ public class ShoppingListAdapter extends RecyclerView.Adapter<ItemHolder> {
     public void setOnClickListener(OnClickListener listener) {
         this.onClickListener = listener;
     }
+    public void setOnLongClickListener(OnLongClickListener longlistener){this.onLongClickListener = onLongClickListener;}
 
     public interface OnClickListener {
         void onClick(int position);
+    }
+
+    public interface OnLongClickListener{
+        void OnLongClick(int position);
     }
 }
